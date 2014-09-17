@@ -12,6 +12,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.nhnnext.architecting.constant.Constant;
+import org.nhnnext.architecting.dispatcher.ThreadPerDispatcher;
 import org.nhnnext.architecting.domain.HandlerListData;
 import org.nhnnext.architecting.domain.ServerListData;
 import org.nhnnext.architecting.handler.EventHandler;

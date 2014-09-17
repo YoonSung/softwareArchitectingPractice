@@ -1,9 +1,10 @@
-package org.nhnnext.architecting;
+package org.nhnnext.architecting.dispatcher;
 
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import org.nhnnext.architecting.Demultiplexer;
 import org.nhnnext.architecting.domain.HandleMap;
 
 public class ThreadPerDispatcher implements Dispatcher{

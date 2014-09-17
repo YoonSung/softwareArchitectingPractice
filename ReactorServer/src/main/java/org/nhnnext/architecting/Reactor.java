@@ -3,6 +3,7 @@ package org.nhnnext.architecting;
 import java.io.IOException;
 import java.net.ServerSocket;
 
+import org.nhnnext.architecting.dispatcher.Dispatcher;
 import org.nhnnext.architecting.domain.HandleMap;
 import org.nhnnext.architecting.handler.EventHandler;
 import org.slf4j.Logger;

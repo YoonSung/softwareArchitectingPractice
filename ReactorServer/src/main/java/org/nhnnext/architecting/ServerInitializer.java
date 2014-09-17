@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.util.List;
 
 import org.nhnnext.architecting.constant.Constant;
+import org.nhnnext.architecting.dispatcher.ThreadPoolDispatcher;
 import org.nhnnext.architecting.domain.HandlerListData;
 import org.nhnnext.architecting.domain.ServerListData;
 import org.nhnnext.architecting.handler.EventHandler;
@@ -19,7 +20,8 @@ public class ServerInitializer {
 	
 	public static void main(String[] args) {
 		log.info("ServerInitializer Main Method Called");
-		Reactor reactor = new Reactor(Constant.PORT, new ThreadPerDispatcher());
+		//Reactor reactor = new Reactor(Constant.PORT, new ThreadPerDispatcher());
+		Reactor reactor = new Reactor(Constant.PORT, new ThreadPoolDispatcher());
 		
 		try {
 			Serializer serializer = new Persister();

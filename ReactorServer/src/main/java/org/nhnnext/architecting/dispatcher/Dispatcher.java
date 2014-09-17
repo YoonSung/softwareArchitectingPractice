@@ -1,4 +1,4 @@
-package org.nhnnext.architecting;
+package org.nhnnext.architecting.dispatcher;
 
 import java.net.ServerSocket;
 
