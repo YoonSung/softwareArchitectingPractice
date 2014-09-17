@@ -1,13 +1,18 @@
 package org.nhnnext.architecting;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.List;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.simpleframework.xml.Serializer;
+import org.simpleframework.xml.core.Persister;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,15 +24,36 @@ public class ServerInitializerTest {
 	
 	@BeforeClass
 	public static void startServer() throws InterruptedException {
+		
 		new Thread() {
 			public void run() {
 				reactor = new Reactor(ServerInitializer.PORT);
+				
+				//Register Class From XML Data
+				Serializer serializer = new Persister();
+				BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/HandlerList.xml")));
+
+				ServerListData serverList = null;
+				try {
+					serverList = serializer.read(ServerListData.class,  bufferedReader);
+					for (HandlerListData handlerListData : serverList.getServer()) {
+						List<String> handlerList = handlerListData.getHandler();
+						
+						for (String handler : handlerList) {
+							reactor.registerHandler((EventHandler)Class.forName("org.nhnnext.architecting."+handler).newInstance());
+							log.debug("handler : {}", handler);
+						}
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
 				reactor.startServer();
 			}
 		}.start();
 		
 		//For Prepare Server Start
-		Thread.sleep(100);
+		Thread.sleep(200);
 	}
 	
 	@AfterClass
@@ -38,8 +64,6 @@ public class ServerInitializerTest {
 	@Test
 	public void socketConnectionTest5001Protocol() {
 		log.info("CLIENT ON, Protocol : 5001");
-		
-		reactor.registerHandler(new StreamSayHelloEventHandler());
 		
 		try (Socket socket = new Socket("127.0.0.1", 5000)){
 			OutputStream out = socket.getOutputStream();
@@ -56,8 +80,6 @@ public class ServerInitializerTest {
 	@Test
 	public void socketConnectionTest6001Protocol() {
 		log.info("CLIENT ON, Protocol : 6001");
-		
-		reactor.registerHandler(new StreamUpdateProfileEventHandler());
 		
 		try (Socket socket = new Socket("127.0.0.1", 5000)){
 			OutputStream out = socket.getOutputStream();
