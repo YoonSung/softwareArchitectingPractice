@@ -31,7 +31,7 @@ public class ServerInitializerTest {
 		
 		new Thread() {
 			public void run() {
-				reactor = new Reactor(Constant.PORT);
+				reactor = new Reactor(Constant.PORT, new ThreadPerDispatcher());
 				
 				//Register Class From XML Data
 				Serializer serializer = new Persister();

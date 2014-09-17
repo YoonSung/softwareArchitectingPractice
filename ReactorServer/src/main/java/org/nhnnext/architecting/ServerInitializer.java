@@ -19,7 +19,7 @@ public class ServerInitializer {
 	
 	public static void main(String[] args) {
 		log.info("ServerInitializer Main Method Called");
-		Reactor reactor = new Reactor(Constant.PORT);
+		Reactor reactor = new Reactor(Constant.PORT, new ThreadPerDispatcher());
 		
 		try {
 			Serializer serializer = new Persister();

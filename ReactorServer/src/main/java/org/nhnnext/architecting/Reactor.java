@@ -12,11 +12,12 @@ public class Reactor {
 	
 	private static final Logger log = LoggerFactory.getLogger(Reactor.class);
 	private ServerSocket serverSocket;
-	private boolean isOperation = true; 
 	private HandleMap handleMap; 
 	
-	public Reactor(int port) {
-		
+	private Dispatcher dispatcher;
+	
+	public Reactor(int port, Dispatcher dispatcher) {
+		this.dispatcher = dispatcher;
 		handleMap = new HandleMap();
 		
 		try {
@@ -29,15 +30,11 @@ public class Reactor {
 	}
 	
 	public void startServer() {
-		Dispatcher dispatcher = new Dispatcher();
-		
-		while(isOperation) {
-			dispatcher.displatch(serverSocket, handleMap);
-		}
+		dispatcher.startDispatch(serverSocket, handleMap);
 	}
 	
 	public void stopServer() {
-		this.isOperation = false;
+		dispatcher.stopDispatch();
 	}
 	
 	public void registerHandler(EventHandler handler) {
