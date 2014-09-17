@@ -7,13 +7,13 @@ import java.util.StringTokenizer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class StreamSayHelloProtocol {
+public class StreamUpdateProfileEventHandler implements EventHandler{
 
-	private static final int DATA_SIZE = 512;
-	private static final int TOKEN_NUM = 2;
+	private static final int DATA_SIZE = 1024;
+	private static final int TOKEN_NUM = 5;
 	
 	
-	private static final Logger log = LoggerFactory.getLogger(StreamSayHelloProtocol.class);
+	private static final Logger log = LoggerFactory.getLogger(StreamUpdateProfileEventHandler.class);
 	
 	public void handleEvent(InputStream inputStream) {
 		try {
@@ -30,11 +30,24 @@ public class StreamSayHelloProtocol {
 				++i;
 			}
 			
-			log.info("SayHello -> name  : {}, age : {}", params[0], params[1]);
+			log.info("updateProfile -> "
+					+ "id : {}, "
+					+ "password : {}"
+					+ "name : {}"
+					+ "age : {}"
+					+ "gender : {}"
+					
+					, params[0], params[1], params[2], params[3], params[4]);
 			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public String getHandler() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

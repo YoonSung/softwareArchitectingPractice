@@ -29,10 +29,10 @@ public class Dispatcher {
 			
 			switch (header) {
 			case "0x5001":
-				new StreamSayHelloProtocol().handleEvent(inputStream);
+				new StreamSayHelloEventHandler().handleEvent(inputStream);
 				break;
 			case "0x6001":
-				new StreamUpdateProfileProtocol().handleEvent(inputStream);
+				new StreamUpdateProfileEventHandler().handleEvent(inputStream);
 				break;
 			}
 		} catch (IOException e) {
