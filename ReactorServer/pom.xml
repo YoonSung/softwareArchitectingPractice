@@ -7,11 +7,22 @@
 	<packaging>war</packaging>
 
 	<dependencies>
+	
+		<!-- Log -->
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
 			<version>1.0.13</version>
 		</dependency>
+		
+		<!-- TestCode -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+			<scope>test</scope>
+		</dependency>
+		
 	</dependencies>
 
 	<build>
