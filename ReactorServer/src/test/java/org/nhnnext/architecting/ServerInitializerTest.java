@@ -15,19 +15,20 @@ public class ServerInitializerTest {
 
 	
 	private static final Logger log = LoggerFactory.getLogger(ServerInitializerTest.class);
+	private static Reactor reactor;
 	
 	@BeforeClass
 	public static void startServer() {
 		new Thread() {
 			public void run() {
-				ServerInitializer.startServer();
+				reactor = new Reactor(ServerInitializer.PORT);
 			}
 		}.start();
 	}
 	
 	@AfterClass
 	public static void stopServer() {
-		ServerInitializer.stopServer();
+		reactor.stopServer();
 	}
 	
 	@Test

@@ -39,8 +39,7 @@ public class StreamSayHelloEventHandler implements EventHandler{
 
 	@Override
 	public String getHandler() {
-		// TODO Auto-generated method stub
-		return null;
+		return "0x5001";
 	}
 
 }
