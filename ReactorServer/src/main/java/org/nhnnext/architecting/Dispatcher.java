@@ -9,16 +9,16 @@ public class Dispatcher {
 	
 	private final int HEADER_SIZE = 6;
 	
-	public void displatch(ServerSocket serverSocket) {
+	public void displatch(ServerSocket serverSocket, HandleMap handleMap) {
 		try {
 			Socket socket = serverSocket.accept();
-			demultiplex(socket);
+			demultiplex(socket, handleMap);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
-	private void demultiplex(Socket socket) {
+	private void demultiplex(Socket socket, HandleMap handleMap) {
 		InputStream inputStream;
 		try {
 			inputStream = socket.getInputStream();
@@ -27,17 +27,9 @@ public class Dispatcher {
 			inputStream.read(buffer);
 			String header = new String(buffer);
 			
-			switch (header) {
-			case "0x5001":
-				new StreamSayHelloEventHandler().handleEvent(inputStream);
-				break;
-			case "0x6001":
-				new StreamUpdateProfileEventHandler().handleEvent(inputStream);
-				break;
-			}
+			handleMap.get(header).handleEvent(inputStream);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
 	}
 }

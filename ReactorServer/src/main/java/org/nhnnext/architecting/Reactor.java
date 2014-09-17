@@ -30,7 +30,7 @@ public class Reactor {
 		Dispatcher dispatcher = new Dispatcher();
 		
 		while(isOperation) {
-			dispatcher.displatch(serverSocket);
+			dispatcher.displatch(serverSocket, handleMap);
 		}
 	}
 	
