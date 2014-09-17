@@ -1,4 +1,4 @@
-package org.nhnnext.architecting;
+package org.nhnnext.architecting.domain;
 
 import java.util.List;
 

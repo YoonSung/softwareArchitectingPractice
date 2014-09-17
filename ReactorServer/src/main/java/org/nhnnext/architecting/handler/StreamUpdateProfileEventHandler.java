@@ -1,4 +1,4 @@
-package org.nhnnext.architecting;
+package org.nhnnext.architecting.handler;
 
 import java.io.IOException;
 import java.io.InputStream;

@@ -11,6 +11,10 @@ import java.util.List;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.nhnnext.architecting.constant.Constant;
+import org.nhnnext.architecting.domain.HandlerListData;
+import org.nhnnext.architecting.domain.ServerListData;
+import org.nhnnext.architecting.handler.EventHandler;
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
 import org.slf4j.Logger;
@@ -27,7 +31,7 @@ public class ServerInitializerTest {
 		
 		new Thread() {
 			public void run() {
-				reactor = new Reactor(ServerInitializer.PORT);
+				reactor = new Reactor(Constant.PORT);
 				
 				//Register Class From XML Data
 				Serializer serializer = new Persister();
@@ -40,7 +44,7 @@ public class ServerInitializerTest {
 						List<String> handlerList = handlerListData.getHandler();
 						
 						for (String handler : handlerList) {
-							reactor.registerHandler((EventHandler)Class.forName("org.nhnnext.architecting."+handler).newInstance());
+							reactor.registerHandler((EventHandler)Class.forName(Constant.HANDLER_PACKAGE + "." +handler).newInstance());
 							log.debug("handler : {}", handler);
 						}
 					}

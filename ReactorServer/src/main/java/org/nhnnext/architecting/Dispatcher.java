@@ -5,9 +5,10 @@ import java.io.InputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import org.nhnnext.architecting.constant.Constant;
+import org.nhnnext.architecting.domain.HandleMap;
+
 public class Dispatcher {
-	
-	private final int HEADER_SIZE = 6;
 	
 	public void displatch(ServerSocket serverSocket, HandleMap handleMap) {
 		try {
@@ -23,7 +24,7 @@ public class Dispatcher {
 		try {
 			inputStream = socket.getInputStream();
 			
-			byte[] buffer = new byte[HEADER_SIZE];
+			byte[] buffer = new byte[Constant.HEADER_SIZE];
 			inputStream.read(buffer);
 			String header = new String(buffer);
 			
