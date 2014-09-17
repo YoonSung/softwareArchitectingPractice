@@ -10,6 +10,11 @@ public class ServerInitializer {
 	
 	public static void main(String[] args) {
 		log.info("ServerInitializer Main Method Called");
-		new Reactor(PORT);
+		Reactor reactor = new Reactor(PORT);
+		
+		reactor.registerHandler(new StreamSayHelloEventHandler());
+		reactor.registerHandler(new StreamUpdateProfileEventHandler());
+		
+		reactor.startServer();
 	}
 }

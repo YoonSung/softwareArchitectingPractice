@@ -18,12 +18,16 @@ public class ServerInitializerTest {
 	private static Reactor reactor;
 	
 	@BeforeClass
-	public static void startServer() {
+	public static void startServer() throws InterruptedException {
 		new Thread() {
 			public void run() {
 				reactor = new Reactor(ServerInitializer.PORT);
+				reactor.startServer();
 			}
 		}.start();
+		
+		//For Prepare Server Start
+		Thread.sleep(100);
 	}
 	
 	@AfterClass
@@ -34,6 +38,8 @@ public class ServerInitializerTest {
 	@Test
 	public void socketConnectionTest5001Protocol() {
 		log.info("CLIENT ON, Protocol : 5001");
+		
+		reactor.registerHandler(new StreamSayHelloEventHandler());
 		
 		try (Socket socket = new Socket("127.0.0.1", 5000)){
 			OutputStream out = socket.getOutputStream();
@@ -50,6 +56,8 @@ public class ServerInitializerTest {
 	@Test
 	public void socketConnectionTest6001Protocol() {
 		log.info("CLIENT ON, Protocol : 6001");
+		
+		reactor.registerHandler(new StreamUpdateProfileEventHandler());
 		
 		try (Socket socket = new Socket("127.0.0.1", 5000)){
 			OutputStream out = socket.getOutputStream();
