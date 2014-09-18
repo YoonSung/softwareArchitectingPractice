@@ -23,7 +23,6 @@ import org.slf4j.LoggerFactory;
 
 public class ServerInitializerTest {
 
-	
 	private static final Logger log = LoggerFactory.getLogger(ServerInitializerTest.class);
 	private static Reactor reactor;
 	
