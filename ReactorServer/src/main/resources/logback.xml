@@ -13,11 +13,11 @@
 	<!-- File Print -->
 	<appender name="FILE"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>classpath:/src/logs/application.log</file>
+		<file>./src/logs/application.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
 			<!-- daily rollover. Make sure the path matches the one in the file element 
 				or else the rollover logs are placed in the working directory. -->
-			<fileNamePattern>classpath:/application_%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+			<fileNamePattern>./src/logs/application_%d{yyyy-MM-dd}.%i.log</fileNamePattern>
 
 			<timeBasedFileNamingAndTriggeringPolicy
 				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
@@ -29,7 +29,7 @@
 
 		<encoder>
 			<charset>UTF-8</charset>
-			<pattern>%d %-4relative [%thread] %-5level %logger{35} - %msg%n
+			<pattern>%d %-4relative [%thread] %-5level %logger{60} - %msg%n
 			</pattern>
 		</encoder>
 	</appender>
