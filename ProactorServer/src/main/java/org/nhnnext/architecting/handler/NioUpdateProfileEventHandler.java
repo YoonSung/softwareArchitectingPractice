@@ -1,4 +1,4 @@
-package practice.nio;
+package org.nhnnext.architecting.handler;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -8,12 +8,12 @@ import java.util.StringTokenizer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class NioSayHelloEventHandler implements NioEventHandler {
+public class NioUpdateProfileEventHandler implements NioEventHandler {
 
 	
-	private static final Logger log = LoggerFactory.getLogger(NioSayHelloEventHandler.class);
+	private static final Logger log = LoggerFactory.getLogger(NioUpdateProfileEventHandler.class);
 	
-	private static final int TOKEN_NUM = 2;
+	private static final int TOKEN_NUM = 5;
 	private AsynchronousServerSocketChannel channel;
 	private ByteBuffer buffer;
 	
@@ -38,7 +38,13 @@ public class NioSayHelloEventHandler implements NioEventHandler {
 				i++;
 			}
 			
-			log.info("SayHello -> name  : {}, age : {}", params[0], params[1]);
+			log.info("updateProfile -> "
+					+ "id : {}, "
+					+ "password : {}"
+					+ "name : {}"
+					+ "age : {}"
+					+ "gender : {}"
+					, params[0], params[1], params[2], params[3], params[4]);
 			
 			try {
 				buffer.clear();
@@ -57,12 +63,12 @@ public class NioSayHelloEventHandler implements NioEventHandler {
 
 	@Override
 	public String getHandle() {
-		return "0x5001";
+		return "0x6001";
 	}
 
 	@Override
 	public int getDataSize() {
-		return 512;
+		return 1024;
 	}
 
 	@Override

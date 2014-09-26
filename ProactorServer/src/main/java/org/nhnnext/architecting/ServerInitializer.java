@@ -1,4 +1,4 @@
-package practice.nio;
+package org.nhnnext.architecting;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -9,6 +9,10 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import org.nhnnext.architecting.domain.NioHandleMap;
+import org.nhnnext.architecting.handler.NioEventHandler;
+import org.nhnnext.architecting.handler.NioSayHelloEventHandler;
+import org.nhnnext.architecting.handler.NioUpdateProfileEventHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

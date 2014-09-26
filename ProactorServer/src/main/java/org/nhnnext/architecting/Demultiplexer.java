@@ -1,9 +1,12 @@
-package practice.nio;
+package org.nhnnext.architecting;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.AsynchronousSocketChannel;
 import java.nio.channels.CompletionHandler;
+
+import org.nhnnext.architecting.domain.NioHandleMap;
+import org.nhnnext.architecting.handler.NioEventHandler;
 
 public class Demultiplexer implements CompletionHandler<Integer, ByteBuffer> {
 
