@@ -33,6 +33,7 @@ public class Demultiplexer implements CompletionHandler<Integer, ByteBuffer> {
 			NioEventHandler handler = handleMap.get(header);
 			
 			ByteBuffer newBuffer = ByteBuffer.allocate(handler.getDataSize());
+			handler.initialize(channel, newBuffer);
 			channel.read(newBuffer, newBuffer, handler);
 		}
 	}

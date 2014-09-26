@@ -4,13 +4,12 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.channels.AsynchronousChannelGroup;
 import java.nio.channels.AsynchronousServerSocketChannel;
-import java.nio.channels.AsynchronousSocketChannel;
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import org.nhnnext.architecting.domain.NioHandleMap;
 import org.nhnnext.architecting.handler.NioEventHandler;
+import org.nhnnext.architecting.handler.NioFileWriteEventHandler;
 import org.nhnnext.architecting.handler.NioSayHelloEventHandler;
 import org.nhnnext.architecting.handler.NioUpdateProfileEventHandler;
 import org.slf4j.Logger;
@@ -32,9 +31,11 @@ public class ServerInitializer {
 		
 		NioEventHandler sayHelloHandler = new NioSayHelloEventHandler();
 		NioEventHandler sayUpdateProfileHandler = new NioUpdateProfileEventHandler();
+		NioEventHandler fileWriteHandler = new NioFileWriteEventHandler();
 		
 		handleMap.put(sayHelloHandler.getHandle(), sayHelloHandler);
 		handleMap.put(sayUpdateProfileHandler.getHandle(), sayUpdateProfileHandler);
+		handleMap.put(fileWriteHandler.getHandle(), fileWriteHandler);
 		
 		// 고정 스레드풀 생성. threadPoolSize 만큼의 스레드만 사용한다
 		ExecutorService executor = Executors.newFixedThreadPool(THREAD_POOL_SIZE);

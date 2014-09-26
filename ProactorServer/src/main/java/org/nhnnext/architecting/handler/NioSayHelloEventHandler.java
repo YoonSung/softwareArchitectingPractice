@@ -2,7 +2,7 @@ package org.nhnnext.architecting.handler;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
-import java.nio.channels.AsynchronousServerSocketChannel;
+import java.nio.channels.AsynchronousSocketChannel;
 import java.util.StringTokenizer;
 
 import org.slf4j.Logger;
@@ -14,7 +14,7 @@ public class NioSayHelloEventHandler implements NioEventHandler {
 	private static final Logger log = LoggerFactory.getLogger(NioSayHelloEventHandler.class);
 	
 	private static final int TOKEN_NUM = 2;
-	private AsynchronousServerSocketChannel channel;
+	private AsynchronousSocketChannel channel;
 	private ByteBuffer buffer;
 	
 	@Override
@@ -66,7 +66,7 @@ public class NioSayHelloEventHandler implements NioEventHandler {
 	}
 
 	@Override
-	public void initialize(AsynchronousServerSocketChannel channel,
+	public void initialize(AsynchronousSocketChannel channel,
 			ByteBuffer buffer) {
 		this.channel = channel;
 		this.buffer = buffer;

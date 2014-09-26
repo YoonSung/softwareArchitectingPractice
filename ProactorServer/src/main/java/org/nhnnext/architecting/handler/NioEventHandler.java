@@ -1,7 +1,7 @@
 package org.nhnnext.architecting.handler;
 
 import java.nio.ByteBuffer;
-import java.nio.channels.AsynchronousServerSocketChannel;
+import java.nio.channels.AsynchronousSocketChannel;
 import java.nio.channels.CompletionHandler;
 
 public interface NioEventHandler extends CompletionHandler<Integer, ByteBuffer> {
@@ -9,5 +9,5 @@ public interface NioEventHandler extends CompletionHandler<Integer, ByteBuffer> 
 	
 	public int getDataSize();
 	
-	public void initialize(AsynchronousServerSocketChannel channel, ByteBuffer buffer);
+	public void initialize(AsynchronousSocketChannel channel, ByteBuffer buffer);
 }

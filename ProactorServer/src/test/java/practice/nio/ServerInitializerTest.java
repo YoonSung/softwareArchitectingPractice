@@ -45,4 +45,19 @@ public class ServerInitializerTest {
 		}
 	}
 	
+	@Test
+	public void socketConnectionTest7001Protocol() {
+		log.info("CLIENT ON, Protocol : 7001");
+		
+		try (Socket socket = new Socket("127.0.0.1", 5000)){
+			OutputStream out = socket.getOutputStream();
+			String message = "0x7001|";
+			
+			out.write(message.getBytes());
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }
