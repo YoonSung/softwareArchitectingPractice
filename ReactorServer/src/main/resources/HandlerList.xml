@@ -3,10 +3,6 @@
 	<server name="server1">
 		<handler>StreamSayHelloEventHandler</handler>
 		<handler>StreamUpdateProfileEventHandler</handler>
-	</server>
-	
-	<server name="server2">
-		<handler>StreamSayHelloEventHandler</handler>
-		<handler>StreamUpdateProfileEventHandler</handler>
+		<handler>FileWriteEventHandler</handler>
 	</server>
 </serverList>
