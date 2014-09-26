@@ -1,0 +1,8 @@
+2014-09-26 14:25:31,204 321  [main] INFO  practice.nio.ServerInitializerTest - CLIENT ON, Protocol : 5001
+2014-09-26 14:25:31,211 328  [main] INFO  practice.nio.ServerInitializerTest - CLIENT ON, Protocol : 6001
+2014-09-26 14:25:51,084 326  [main] INFO  practice.nio.ServerInitializer - SERVER START!
+2014-09-26 14:25:54,932 281  [main] INFO  practice.nio.ServerInitializerTest - CLIENT ON, Protocol : 5001
+2014-09-26 14:25:54,938 287  [main] INFO  practice.nio.ServerInitializerTest - CLIENT ON, Protocol : 6001
+2014-09-26 14:52:14,031 397  [main] INFO  practice.nio.ServerInitializer - SERVER START!
+2014-09-26 14:52:18,330 276  [main] INFO  practice.nio.ServerInitializerTest - CLIENT ON, Protocol : 5001
+2014-09-26 14:52:18,338 284  [main] INFO  practice.nio.ServerInitializerTest - CLIENT ON, Protocol : 6001

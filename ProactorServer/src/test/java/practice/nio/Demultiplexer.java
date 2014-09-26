@@ -5,12 +5,14 @@ import java.nio.ByteBuffer;
 import java.nio.channels.AsynchronousSocketChannel;
 import java.nio.channels.CompletionHandler;
 
-public class EchoHandler implements CompletionHandler<Integer, ByteBuffer> {
+public class Demultiplexer implements CompletionHandler<Integer, ByteBuffer> {
 
 	private AsynchronousSocketChannel channel;
+	private NioHandleMap handleMap;
 	
-	public EchoHandler(AsynchronousSocketChannel channel) {
+	public Demultiplexer(AsynchronousSocketChannel channel, NioHandleMap handleMap) {
 		this.channel = channel;
+		this.handleMap = handleMap;
 	}
 	
 	@Override
@@ -24,8 +26,11 @@ public class EchoHandler implements CompletionHandler<Integer, ByteBuffer> {
 		} else if (result > 0) {
 			buffer.flip();
 			
-			String msg = new String(buffer.array());
-			System.out.println("Echo : "+msg);
+			String header = new String(buffer.array());
+			NioEventHandler handler = handleMap.get(header);
+			
+			ByteBuffer newBuffer = ByteBuffer.allocate(handler.getDataSize());
+			channel.read(newBuffer, newBuffer, handler);
 		}
 	}
 
