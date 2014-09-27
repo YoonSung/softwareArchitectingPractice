@@ -41,7 +41,7 @@ public class ThreadPoolDispatcher implements Dispatcher {
 						Socket socket;
 						try {
 							socket = serverSocket.accept();
-							log.debug("Request Accept Thread id : {}",this.getId());
+							//log.debug("Request Accept Thread id : {}",this.getId());
 							new Demultiplexer(socket, handleMap).run();
 							
 						} catch (IOException e) {

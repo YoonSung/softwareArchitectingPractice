@@ -26,12 +26,12 @@ public class FileWriteEventHandler implements EventHandler {
 	/**
 	 * Write할 파일사이즈 (byte 단위)
 	 */
-	private static final int DATA_SIZE = 512;
-	
+	private static final int DATA_SIZE = 1024 * 1024 * 20;
+	//2000
 	/**
 	 *수신데이터의 최대 Parameter 갯수
 	 */
-	private static final int BYTE_SIZE = 1024;
+	private static final int BYTE_SIZE = 8;
 
 	/**
 	 * 사용자 요청 InputStream을 분석해서, 미리 약속된 형태로 Parsing하여 데이터를 처리한다.
@@ -52,7 +52,7 @@ public class FileWriteEventHandler implements EventHandler {
 				fos.write(buffer);
 			}
 			
-			log.info("File Write Working Done");
+			//log.info("File Write Working Done");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
