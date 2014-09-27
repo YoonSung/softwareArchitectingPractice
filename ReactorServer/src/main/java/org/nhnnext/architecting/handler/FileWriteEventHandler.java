@@ -40,13 +40,13 @@ public class FileWriteEventHandler implements EventHandler {
 	 * @param 사용자 요청에 대한 스트림 현재 약속된 데이터셋은 없다 
 	 */
 	public void handleEvent(InputStream inputStream) {
-		FileOutputStream fos = null;
+
+		byte[] buffer = new byte[BYTE_SIZE];
 		
-		try {
-			byte[] buffer = new byte[BYTE_SIZE];
+		String fileName = "Reactor__" + new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss:SSSS").format(System.currentTimeMillis()) + ".dat";
+		try(FileOutputStream fos = new FileOutputStream(new File(FILE_PATH + File.separator + fileName))) {
+
 			inputStream.read(buffer);
-			String fileName = "Reactor__" + new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss:SSSS").format(System.currentTimeMillis()) + ".dat";;
-			fos = new FileOutputStream(new File(FILE_PATH + File.separator + fileName));
 
 			for (int i = 0 ; i < DATA_SIZE ; i++) {
 				fos.write(buffer);
@@ -55,12 +55,6 @@ public class FileWriteEventHandler implements EventHandler {
 			log.info("File Write Working Done");
 		} catch (IOException e) {
 			e.printStackTrace();
-		} finally {
-			try {
-				if (fos != null) {
-					fos.close();
-				}
-			} catch (IOException e) {}
 		}
 	}
 	

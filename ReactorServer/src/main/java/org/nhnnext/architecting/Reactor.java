@@ -45,7 +45,6 @@ public class Reactor {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
 	}
 	
 	/**
@@ -60,6 +59,12 @@ public class Reactor {
 	 */
 	public void stopServer() {
 		dispatcher.stopDispatch();
+		try {
+			serverSocket.close();
+		} catch (IOException e) {
+			log.error("Server Close Exception : {}", e.getMessage());
+			e.printStackTrace();
+		}
 	}
 	
 	/**

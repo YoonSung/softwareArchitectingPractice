@@ -37,9 +37,7 @@ public class Demultiplexer implements Runnable {
 	 */
 	@Override
 	public void run() {
-		InputStream inputStream = null;
-		try {
-			inputStream = socket.getInputStream();
+		try(InputStream inputStream = socket.getInputStream()) {
 			
 			byte[] buffer = new byte[Constant.HEADER_SIZE];
 			inputStream.read(buffer);
@@ -48,10 +46,6 @@ public class Demultiplexer implements Runnable {
 			handleMap.get(header).handleEvent(inputStream);
 		} catch (IOException e) {
 			e.printStackTrace();
-		} finally {
-			if (inputStream != null) {
-				try { inputStream.close();} catch (IOException e) {}
-			}
 		}
 	}
 
