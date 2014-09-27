@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
+import java.util.Random;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,13 +21,12 @@ public class FileWriteEventHandler implements EventHandler {
 	
 	private static final Logger log = LoggerFactory.getLogger(FileWriteEventHandler.class);
 	
-	private static final String FILE_PATH
-		= "./src/logs/Reactor__"+ new SimpleDateFormat("yyyy-MM-dd_HH:mm").format(System.currentTimeMillis()) + ".dat";
+	private static final String FILE_PATH = "./src/logs/";
 	
 	/**
 	 * Write할 파일사이즈 (byte 단위)
 	 */
-	private static final int DATA_SIZE = 200;
+	private static final int DATA_SIZE = 512;
 	
 	/**
 	 *수신데이터의 최대 Parameter 갯수
@@ -45,8 +45,8 @@ public class FileWriteEventHandler implements EventHandler {
 		try {
 			byte[] buffer = new byte[BYTE_SIZE];
 			inputStream.read(buffer);
-			
-			fos = new FileOutputStream(new File(FILE_PATH));
+			String fileName = "Reactor__" + new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss:SSSS").format(System.currentTimeMillis()) + ".dat";;
+			fos = new FileOutputStream(new File(FILE_PATH + File.separator + fileName));
 
 			for (int i = 0 ; i < DATA_SIZE ; i++) {
 				fos.write(buffer);

@@ -31,12 +31,16 @@ public class ThreadPerDispatcher implements Dispatcher{
 	public void startDispatch(ServerSocket serverSocket, HandleMap handleMap) {
 		
 		while(isOperation) {
+			Socket socket = null;
 			try {
-				Socket socket = serverSocket.accept();
+				socket = serverSocket.accept();
 				new Thread(new Demultiplexer(socket, handleMap)).start();
 				
 			} catch (IOException e) {
 				e.printStackTrace();
+			} finally {
+				if (socket != null)
+					try {socket.close();}catch(Exception e){};
 			}
 		}
 	}
